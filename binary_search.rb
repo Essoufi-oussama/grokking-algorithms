@@ -1,17 +1,19 @@
-def binary_search(array, number)
-  count = 0
-  until array.size == 1
-    middle = array.size / 2
-    if number == array[middle]
-      return number
-    elsif number < array[middle]
-      array = array.select {|element| element < array[middle]}
+def binary_search(list, item)
+  low = 0
+  high = list.size
+
+  while low <= high
+    middle = (low + high) / 2
+    guess = list[middle]
+    if guess == item
+      return guess
+    elsif guess > item
+      high = middle - 1
     else
-      array = array.select {|element| element > array[middle]}
+      low = middle + 1
     end
-    count += 1
   end
-  puts "your number is #{array.first} and was found in #{count} tries, the array is #{array}"
 end
 
- binary_search([1,2,3,4,5,6,7,8,9,10], 10)
+my_list = ["a", "b", "c", "d", "e"]
+p binary_search(my_list, "b")
